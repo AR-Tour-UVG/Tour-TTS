@@ -36,7 +36,7 @@ def text_to_ssml(inputfile: str) -> str:
     return ssml
 
 
-def ssml_to_audio(ssml_text: str) -> None:
+def ssml_to_audio(ssml_text: str, output: str) -> None:
     """
     Generates SSML text from plaintext.
     Given a string of SSML text and an output file name, this function
@@ -57,7 +57,7 @@ def ssml_to_audio(ssml_text: str) -> None:
     # Builds the voice request, selects the language code ("en-US") and
     # the SSML voice gender ("MALE")
     voice = texttospeech.VoiceSelectionParams(
-        language_code="en-US", ssml_gender=texttospeech.SsmlVoiceGender.MALE
+        language_code="es-US", name="es-US-Studio-B", ssml_gender=texttospeech.SsmlVoiceGender.MALE
     )
 
     # Selects the type of audio file to return
@@ -72,16 +72,19 @@ def ssml_to_audio(ssml_text: str) -> None:
     )
 
     # Writes the synthetic audio to the output file.
-    with open("../audio/test_example.mp3", "wb") as out:
+    with open(output, "wb") as out:
         out.write(response.audio_content)
-        print("Audio content written to file " + "test_example.mp3")
+        print(f"Audio content written to file {output}" )
 
 if __name__ == "__main__":
-    ssml_text = """<speak>
-    <voice name="es-US-Standard-C">
-        <prosody rate="fast">
-            Hola, Mundo!
-        </prosody>
-    </voice>
-    </speak>"""
-    ssml_to_audio(ssml_text)
+    welcome = """
+    <speak>
+        Hola, Soy Jack, y seré tu guía virtual. 
+        <break time="500ms"/>
+        Te doy la bienvenida al Tour de Realidad Aumentada por la <say-as interpret-as="characters">UBG</say-as>
+        <break time="600ms"/>
+        ¡Comencemos!
+    </speak>
+    """
+
+    ssml_to_audio(welcome, "audio/welcome_studio.mp3")

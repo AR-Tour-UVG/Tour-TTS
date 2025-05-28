@@ -22,7 +22,7 @@ env.bak/
 venv.bak/
 
 # Audio files
-*.mp3 
+audio/
 
 # Common temporary files
 *.log
