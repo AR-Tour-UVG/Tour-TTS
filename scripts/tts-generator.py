@@ -52,12 +52,12 @@ def ssml_to_audio(ssml_text: str, output: str) -> None:
     client = texttospeech.TextToSpeechClient()
 
     # Sets the text input to be synthesized
-    synthesis_input = texttospeech.SynthesisInput(ssml=ssml_text)
+    synthesis_input = texttospeech.SynthesisInput(text=ssml_text)
 
     # Builds the voice request, selects the language code ("en-US") and
     # the SSML voice gender ("MALE")
     voice = texttospeech.VoiceSelectionParams(
-        language_code="es-US", name="es-US-Studio-B", ssml_gender=texttospeech.SsmlVoiceGender.MALE
+        language_code="es-US", name="es-US-Chirp3-HD-Charon"
     )
 
     # Selects the type of audio file to return
@@ -78,13 +78,9 @@ def ssml_to_audio(ssml_text: str, output: str) -> None:
 
 if __name__ == "__main__":
     welcome = """
-    <speak>
-        Hola, Soy Jack, y seré tu guía virtual. 
-        <break time="500ms"/>
-        Te doy la bienvenida al Tour de Realidad Aumentada por la <say-as interpret-as="characters">UBG</say-as>
-        <break time="600ms"/>
-        ¡Comencemos!
-    </speak>
+    Hola, Soy Jack, y seré tu guía virtual. 
+    Te doy la bienvenida al Tour de Realidad Aumentada por la UBG.
+    ¡Comencemos!
     """
 
-    ssml_to_audio(welcome, "audio/welcome_studio.mp3")
+    ssml_to_audio(welcome, "audio/welcome_charon.mp3")
