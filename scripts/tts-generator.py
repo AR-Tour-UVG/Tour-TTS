@@ -52,12 +52,12 @@ def ssml_to_audio(ssml_text: str, output: str) -> None:
     client = texttospeech.TextToSpeechClient()
 
     # Sets the text input to be synthesized
-    synthesis_input = texttospeech.SynthesisInput(text=ssml_text)
+    synthesis_input = texttospeech.SynthesisInput(ssml=ssml_text)
 
     # Builds the voice request, selects the language code ("en-US") and
     # the SSML voice gender ("MALE")
     voice = texttospeech.VoiceSelectionParams(
-        language_code="es-US", name="es-US-Chirp3-HD-Charon"
+        language_code="es-US", name="es-US-Polyglot-1", ssml_gender=texttospeech.SsmlVoiceGender.MALE 
     )
 
     # Selects the type of audio file to return
@@ -77,10 +77,21 @@ def ssml_to_audio(ssml_text: str, output: str) -> None:
         print(f"Audio content written to file {output}" )
 
 if __name__ == "__main__":
-    welcome = """
-    Hola, Soy Jack, y seré tu guía virtual. 
-    Te doy la bienvenida al Tour de Realidad Aumentada por la UBG.
-    ¡Comencemos!
+    tour_startup = """
+    <speak>
+    Ahora, para comenzar, presiona el botón con el ícono de brújula en la esquina superior izquierda. 
+    <break time="500ms"/>
+    Luego elige uno de los tours disponibles y toca comenzar.
+    </speak>
     """
 
-    ssml_to_audio(welcome, "audio/welcome_charon.mp3")
+    tour_guide = """
+    <speak>
+    Este es un tour de prueba. 
+    <break time="400ms"/> 
+    Solo lo usaremos para verificar que todo funcione correctamente antes de hacer un recorrido real.
+    </speak>
+    """
+
+    ssml_to_audio(tour_startup, "audio/intro_audio.mp3")
+    ssml_to_audio(tour_guide, "audio/guide_audio.mp3")
