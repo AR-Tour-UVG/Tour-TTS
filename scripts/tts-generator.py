@@ -114,9 +114,15 @@ if __name__ == "__main__":
 
     stop_info = """
     <speak>
-    Has llegado a la parada.
+    Has llegado a una parada.
     <break time="400ms"/>
     Aquí podrás ver información importante sobre este lugar.
+    </speak>
+    """
+
+    first_stop = """
+    <speak>
+    Has llegado a la primera parada.
     </speak>
     """
 
@@ -140,4 +146,5 @@ if __name__ == "__main__":
     ssml_to_audio(stop_info, "test-audio/stop_info.mp3")
     ssml_to_audio(continue_tour, "test-audio/continue_tour.mp3")
     ssml_to_audio(tour_end, "test-audio/tour_end.mp3")
+    ssml_to_audio(first_stop, "test-audio/first_stop.mp3")
     print("All audio files generated successfully.")
