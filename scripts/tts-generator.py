@@ -77,21 +77,67 @@ def ssml_to_audio(ssml_text: str, output: str) -> None:
         print(f"Audio content written to file {output}" )
 
 if __name__ == "__main__":
+
+    welcome_msg = """
+    <speak>
+        Hola, Soy Jack, y seré tu guía virtual. 
+        <break time="500ms"/>
+        Te doy la bienvenida al Tour de Realidad Aumentada por la <say-as interpret-as="characters">UBG</say-as>
+        <break time="600ms"/>
+        ¡Vamos!
+    </speak>
+    """
+
     tour_startup = """
     <speak>
-    Ahora, para comenzar, presiona el botón con el ícono de brújula en la esquina superior izquierda. 
-    <break time="500ms"/>
-    Luego elige uno de los tours disponibles y toca comenzar.
+        Ahora, para comenzar, presiona el botón con el ícono de brújula en la esquina superior izquierda. 
+        <break time="500ms"/>
+        Luego elige uno de los tours disponibles y toca comenzar.
     </speak>
     """
 
     tour_guide = """
     <speak>
-    Este es un tour de prueba. 
-    <break time="400ms"/> 
-    Solo lo usaremos para verificar que todo funcione correctamente antes de hacer un recorrido real.
+        ¡Comenzamos el tour!  
+        <break time="400ms"/> 
+        Este es un recorrido de prueba para que conozcas cómo funciona la app.
+        <break time="500ms"/>
+        Durante el recorrido, sigue la flecha y acércate a los sensores morados.
     </speak>
     """
 
-    ssml_to_audio(tour_startup, "audio/intro_audio.mp3")
-    ssml_to_audio(tour_guide, "audio/guide_audio.mp3")
+    follow_arrow = """
+    <speak>
+    Sigue la flecha.
+    </speak>
+    """
+
+    stop_info = """
+    <speak>
+    Has llegado a la parada.
+    <break time="400ms"/>
+    Aquí podrás ver información importante sobre este lugar.
+    </speak>
+    """
+
+    continue_tour = """
+    <speak>
+    Cuando estés listo, presiona siguiente y sigue la flecha al siguiente punto.
+    </speak>
+    """
+
+    tour_end = """
+    <speak>
+    ¡Felicidades! Has completado el tour.
+    </speak>
+    """
+
+    # Generate SSML text from plaintext
+    ssml_to_audio(welcome_msg, "test-audio/welcome_msg.mp3")
+    ssml_to_audio(tour_startup, "test-audio/tour_startup.mp3")
+    ssml_to_audio(tour_guide, "test-audio/tour_guide.mp3")
+    ssml_to_audio(follow_arrow, "test-audio/follow_arrow.mp3")
+    ssml_to_audio(stop_info, "test-audio/stop_info.mp3")
+    ssml_to_audio(continue_tour, "test-audio/continue_tour.mp3")
+    ssml_to_audio(tour_end, "test-audio/tour_end.mp3")
+    print("All audio files generated successfully.")
